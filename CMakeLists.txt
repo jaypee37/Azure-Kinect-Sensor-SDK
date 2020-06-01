@@ -162,7 +162,6 @@ if ("${CMAKE_C_COMPILER_ID}" STREQUAL "MSVC")
 endif()
 
 add_subdirectory(src)
-add_subdirectory(tools)
 
 if (K4A_BUILD_DOCS)
     find_package(Doxygen 1.8.14 EXACT)

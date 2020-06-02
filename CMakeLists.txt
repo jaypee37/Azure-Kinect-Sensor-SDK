@@ -27,6 +27,10 @@ option(K4A_BUILD_DOCS "Build K4A doxygen documentation" OFF)
 option(K4A_MTE_VERSION "Skip FW version check" OFF)
 option(K4A_SOURCE_LINK "Enable source linking on MSVC" OFF)
 
+option(BUILD_TESTS "Build azurekinectsdk tests" ON)
+option(BUILD_EXAMPLES "Build azurekinectsdk examples" ON)
+option(BUILD_TOOLS "Build azurekinectsdk tools" ON)
+
 include(GitCommands)
 
 # Set the project version
@@ -161,7 +165,19 @@ if ("${CMAKE_C_COMPILER_ID}" STREQUAL "MSVC")
     endif()
 endif()
 
+if(${BUILD_EXAMPLES})
+    add_subdirectory(examples)
+endif()
+
 add_subdirectory(src)
+
+if(${BUILD_TESTS})
+    add_subdirectory(tests)
+endif()
+
+if(${BUILD_TOOLS})
+    add_subdirectory(tools)
+endif()
 
 if (K4A_BUILD_DOCS)
     find_package(Doxygen 1.8.14 EXACT)
